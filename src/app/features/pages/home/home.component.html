@@ -1,0 +1,57 @@
+<!-- home slider -->
+<section class="my-10">
+<div class="grid md:grid-cols-[35%_20%_20%] justify-center">
+    <div>
+        <owl-carousel-o [options]="customMainSlider">
+            
+            <ng-template carouselSlide>
+                <img src="/images/1678304313006-cover.jpeg" class="w-full h-[400px]" alt="">
+            </ng-template>  
+            <ng-template carouselSlide>
+                <img src="/images/1680395032949-cover.jpeg" class="w-full h-[400px]" alt="">
+            </ng-template>  
+            <ng-template carouselSlide>
+                <img src="/images/1678302803089-cover.jpeg" class="w-full h-[400px]" alt="">
+            </ng-template>  
+            
+        </owl-carousel-o>
+        
+    </div>
+
+    <div>
+        <img src="/images/1678304764905-cover.jpeg" class="w-full h-[200px]" alt="printer">
+        <img src="/images/1678301723274-cover.jpeg" class="w-full h-[200px]" alt="labtop">
+    </div>
+    
+    <div>
+        <img src="/images/1678303526206-cover.jpeg" class="w-full h-[200px]" alt="playstation">
+        <img src="/images/1678304313006-cover.jpeg" class="w-full h-[200px]" alt="camera">
+    </div>
+    
+</div>
+
+    
+</section>
+
+
+<!-- category slider -->
+<section class="my-10 text-center">
+<h2 class="mb-4 text-3xl font-bold capitalize ">categories</h2>
+    <owl-carousel-o [options]="customOptions">
+
+@for (category of categoryList; track $index) {
+    <ng-template carouselSlide>
+        <div class="text-center">
+            <img [src]="category.image" class="w-full h-[250px]" [alt]="category.name">
+            <h2 class="mt-2 text-2xl font-bold text-black">{{category.name}}</h2>
+        </div>
+      </ng-template>
+}
+        
+    
+      </owl-carousel-o>
+
+</section>
+
+<!-- products -->
+<app-products></app-products>

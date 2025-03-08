@@ -13,6 +13,7 @@ export class BrandsComponent implements OnInit {
   private readonly brandService = inject(BrandsService);
 
   brandList:IBrands[] = [];
+  specificBrand : IBrands = {} as IBrands ;
 
 
   ngOnInit(): void {
@@ -27,6 +28,31 @@ export class BrandsComponent implements OnInit {
     })
   }
 
+  showSpecificBrand(id:string):void{
+    this.brandService.getSpecificBrand(id).subscribe({
+      next:(res)=>{
+        console.log(res);
+        
+        this.specificBrand = res.data;
+        
+      }
+    })
+  }
   
+  openModal(id:string) {
+    const modal = document.getElementById('defaultModal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      this.showSpecificBrand(id);
+    }
+  }
+
+  closeModal() {
+    const modal = document.getElementById('defaultModal');
+    if (modal) {
+      modal.classList.add('hidden');
+    }
+  }
+
 
 }

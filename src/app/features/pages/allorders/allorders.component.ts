@@ -13,6 +13,7 @@ export class AllordersComponent implements OnInit {
   private readonly orderService = inject(OrdersService);
 
 cartId:string = ""
+cartItem:object[] = []
 
 ngOnInit(): void {
   this.getCartId();
@@ -24,6 +25,7 @@ getAllUserData(cartId:string):void{
   this.orderService.getAllUserOrders(this.cartId).subscribe({
     next:(res)=>{
       console.log(res);
+      this.cartItem = res[0].cartItems;
     }
   })
 }

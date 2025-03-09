@@ -30,7 +30,7 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         console.log(res);
         this.cartDetails = res ;
-          // localStorage.setItem('cartId', res.cartId);
+          localStorage.setItem('cartId', res.data.cartOwner);
       }
     })
   }

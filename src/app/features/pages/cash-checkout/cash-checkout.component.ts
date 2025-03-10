@@ -1,22 +1,25 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OrdersService } from '../../../core/service/orders/orders.service';
 import { ToastrService } from 'ngx-toastr';
+import { OrdersService } from '../../../core/service/orders/orders.service';
 
 @Component({
-  selector: 'app-checkout',
-  imports: [ReactiveFormsModule ],
-  templateUrl: './checkout.component.html',
-  styleUrl: './checkout.component.scss'
+  selector: 'app-cash-checkout',
+  imports: [ReactiveFormsModule],
+  templateUrl: './cash-checkout.component.html',
+  styleUrl: './cash-checkout.component.scss'
 })
-export class CheckoutComponent implements OnInit {
+export class CashCheckoutComponent {
 
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly ordersService = inject(OrdersService);
+  private readonly toaster = inject(ToastrService);
+  private readonly router = inject(Router);
 
   checkOutForm!:FormGroup ;
   cartId:string = "";
+
 
   ngOnInit(): void {
       this.initForm();
@@ -36,23 +39,24 @@ export class CheckoutComponent implements OnInit {
       next:(param)=>{
         this.cartId = param.get('id') !
         console.log(this.cartId);
-        
        }
     })
   }
 
-  submitForm():void{
-    if( this.checkOutForm.valid ){
-      this.ordersService.checkOutPayment(this.cartId , this.checkOutForm.value).subscribe({
+
+  cashSubmit():void{
+    if(this.checkOutForm.valid){
+      this.ordersService.createCashOrder(this.cartId , this.checkOutForm.value).subscribe({
         next:(res)=>{
-          open(res.session.url , '_self' )
+          console.log(res);
+          this.router.navigate(['/home']);
+          this.toaster.success("successful operation")
         }
       })
-    }
-    else{
+    }else{
       this.checkOutForm.markAllAsTouched();
     }
-}
+  }
 
-
+  
 }

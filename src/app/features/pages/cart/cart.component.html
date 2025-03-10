@@ -39,8 +39,10 @@
         </div>
     }
     
-
-    <button [routerLink]="['/checkout' , cartDetails.data._id]" class="px-8 py-3 text-2xl text-white bg-blue-600 rounded-lg hover:bg-blue-900">check out</button>
+<div class="flex items-center justify-between w-[90%] mx-auto">
+    <button [routerLink]="['/checkout' , cartDetails.data._id]" class="px-8 py-3 text-2xl text-white bg-blue-600 rounded-lg hover:bg-blue-900">By visa</button>
+    <button [routerLink]="['/cashCheckout' , cartDetails.data._id]" class="px-8 py-3 text-2xl text-white bg-blue-600 rounded-lg hover:bg-blue-900">By cash</button>
+</div>
 
 </section>
 }

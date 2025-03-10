@@ -88,6 +88,12 @@ export const routes: Routes = [
                 title: 'checkout'
             },
             {
+                path: 'cashCheckout/:id',
+                loadComponent: () => import('./features/pages/cash-checkout/cash-checkout.component')
+                    .then(m => m.CashCheckoutComponent),
+                title: 'checkout'
+            },
+            {
                 path: 'allorders',
                 loadComponent: () => import('./features/pages/allorders/allorders.component')
                     .then(m => m.AllordersComponent),

@@ -18,6 +18,14 @@ export class OrdersService {
     )
   }
 
+  createCashOrder(id:string , data:object):Observable<any>{
+    return this.httpClient.post(`${environment.baseUrl}orders/${id}`,
+      {
+        "shippingAddress": data
+    }
+    )
+  }
+
   getAllUserOrders(id:string):Observable<any>{
     return this.httpClient.get(`${environment.baseUrl}orders/user/${id}`)
   }

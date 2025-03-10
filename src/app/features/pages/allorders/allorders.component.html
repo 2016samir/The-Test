@@ -1,1 +1,20 @@
-<p>allorders works!</p>
+<section class="my-32 w-[80%] mx-auto bg-gray-200 rounded-lg p-5">
+<h2 class="mx-auto text-4xl font-semibold text-green-700 w-fit">My Order</h2>
+
+@for (product of cartItem; track $index) {
+<div class="flex items-center justify-between py-3 my-5 border-b border-gray-300">
+
+        <div class="w-[30%]">
+        <img [src]="product.product.imageCover" class="w-full h-[200px] object-contain" [alt]="product.product.title">
+        </div>
+        
+        <div class="w-[70%]">
+            <h2 class="text-2xl">{{product.product.title}}</h2>
+            <p class="my-5 text-xl font-semibold text-green-700">{{product.price | currency : 'GBP'}}</p>
+        </div>
+        
+    </div>
+}
+    
+
+</section>

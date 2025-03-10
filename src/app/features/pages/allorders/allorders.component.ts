@@ -1,9 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { OrdersService } from '../../../core/service/orders/orders.service';
+import { Iallorders } from '../../../shared/interface/allorders/iallorders';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-allorders',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './allorders.component.html',
   styleUrl: './allorders.component.scss'
 })
@@ -13,19 +15,18 @@ export class AllordersComponent implements OnInit {
   private readonly orderService = inject(OrdersService);
 
 cartId:string = ""
-cartItem:object[] = []
+cartItem:Iallorders[] = []
 
 ngOnInit(): void {
   this.getCartId();
 }
 
 
-
 getAllUserData(cartId:string):void{
   this.orderService.getAllUserOrders(this.cartId).subscribe({
     next:(res)=>{
-      console.log(res);
-      this.cartItem = res[0].cartItems;
+      this.cartItem = res[res.length - 1].cartItems;
+      console.log(this.cartItem);
     }
   })
 }

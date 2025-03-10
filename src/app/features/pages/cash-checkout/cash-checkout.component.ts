@@ -38,7 +38,6 @@ export class CashCheckoutComponent {
     this.activatedRoute.paramMap.subscribe({
       next:(param)=>{
         this.cartId = param.get('id') !
-        console.log(this.cartId);
        }
     })
   }
@@ -48,7 +47,6 @@ export class CashCheckoutComponent {
     if(this.checkOutForm.valid){
       this.ordersService.createCashOrder(this.cartId , this.checkOutForm.value).subscribe({
         next:(res)=>{
-          console.log(res);
           this.router.navigate(['/home']);
           this.toaster.success("successful operation")
         }

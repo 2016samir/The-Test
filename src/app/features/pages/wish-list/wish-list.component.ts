@@ -27,7 +27,6 @@ export class WishListComponent implements OnInit {
   getWishlistData():void{
     this.wishlist.getLoggedUserWishlist().subscribe({
       next:(res)=>{
-        console.log(res);
         this.wishListData = res.data;
       }
     })
@@ -36,7 +35,6 @@ export class WishListComponent implements OnInit {
   removeItem(id:string):void{
     this.wishlist.RemoveItemFromWishlist(id).subscribe({
       next:(res)=>{
-        console.log(res);
         this.getWishlistData();
       }
     })
@@ -45,10 +43,8 @@ export class WishListComponent implements OnInit {
   addToCart(id:string):void{
     this.cartService.addProductToCart(id).subscribe({
       next:(res)=>{
-        // console.log(res);
         this.toastrService.success(res.message)
-
-
+        this.cartService.cartNumber.next( res.numOfCartItems )
       }
     })
   }

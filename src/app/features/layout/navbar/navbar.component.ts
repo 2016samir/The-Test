@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit{
 ngOnInit(): void {
 
 this.cartService.getLoggedUserCart().subscribe({
-next:(res)=>{
+  next:(res)=>{
   this.cartService.cartNumber.next(res.numOfCartItems);
   
 }

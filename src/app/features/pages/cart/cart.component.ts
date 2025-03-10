@@ -28,7 +28,6 @@ export class CartComponent implements OnInit {
   getCartData():void{
     this.cartService.getLoggedUserCart().subscribe({
       next:(res)=>{
-        console.log(res);
         this.cartDetails = res ;
           localStorage.setItem('cartId', res.data.cartOwner);
       }
@@ -39,7 +38,6 @@ export class CartComponent implements OnInit {
   removeItem(id:string):void{
     this.cartService.removeSpecificCartItem(id).subscribe({
       next:(res)=>{
-        console.log(res);
         this.cartDetails = res;
         this.cartService.cartNumber.next(res.numOfCartItems);
       }
@@ -57,7 +55,6 @@ export class CartComponent implements OnInit {
   clearItems():void{
     this.cartService.clearCart().subscribe({
       next:(res)=>{
-        console.log(res , "hello");
         if(res.message === "success"){
           this.cartDetails.numOfCartItems = 0;
           this.getCartData();

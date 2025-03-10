@@ -30,11 +30,8 @@ export class BrandsComponent implements OnInit {
 
   showSpecificBrand(id:string):void{
     this.brandService.getSpecificBrand(id).subscribe({
-      next:(res)=>{
-        console.log(res);
-        
+      next:(res)=>{        
         this.specificBrand = res.data;
-        
       }
     })
   }

@@ -26,7 +26,6 @@ getAllUserData(cartId:string):void{
   this.orderService.getAllUserOrders(this.cartId).subscribe({
     next:(res)=>{
       this.cartItem = res[res.length - 1].cartItems;
-      console.log(this.cartItem);
     }
   })
 }

@@ -34,9 +34,7 @@ export class CheckoutComponent implements OnInit {
   getCartId():void{
     this.activatedRoute.paramMap.subscribe({
       next:(param)=>{
-        this.cartId = param.get('id') !
-        console.log(this.cartId);
-        
+        this.cartId = param.get('id') !        
        }
     })
   }

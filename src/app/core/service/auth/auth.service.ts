@@ -29,7 +29,6 @@ export class AuthService {
   saveUserData():void{
     if(localStorage.getItem('userToken') !== null){
       this.userData = jwtDecode( localStorage.getItem('userToken')! );
-      // console.log('userData' , this.userData);
       
     }
   }

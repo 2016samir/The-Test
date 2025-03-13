@@ -44,7 +44,7 @@ export class WishListComponent implements OnInit {
     this.cartService.addProductToCart(id).subscribe({
       next:(res)=>{
         this.toastrService.success(res.message)
-        this.cartService.cartNumber.next( res.numOfCartItems )
+        this.cartService.cartNumber.set( res.numOfCartItems )
       }
     })
   }

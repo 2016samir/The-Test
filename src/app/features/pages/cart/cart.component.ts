@@ -39,7 +39,7 @@ export class CartComponent implements OnInit {
     this.cartService.removeSpecificCartItem(id).subscribe({
       next:(res)=>{
         this.cartDetails = res;
-        this.cartService.cartNumber.next(res.numOfCartItems);
+        this.cartService.cartNumber.set(res.numOfCartItems);
       }
     })
   }
@@ -58,7 +58,7 @@ export class CartComponent implements OnInit {
         if(res.message === "success"){
           this.cartDetails.numOfCartItems = 0;
           this.getCartData();
-        this.cartService.cartNumber.next(0);
+        this.cartService.cartNumber.set(0);
         }
       }
     })

@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit } from '@angular/core';
+import { Component, computed, inject, input, OnInit, Signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../core/service/auth/auth.service';
 import { CartService } from '../../../core/service/cart/cart.service';
@@ -15,22 +15,23 @@ export class NavbarComponent implements OnInit{
   private readonly authService = inject(AuthService);
   private readonly cartService = inject(CartService);
 
-  countNumber:number = 0;
+  countNumber:Signal<number> = computed( ()=> this.cartService.cartNumber() );
   
 ngOnInit(): void {
 
 this.cartService.getLoggedUserCart().subscribe({
   next:(res)=>{
-  this.cartService.cartNumber.next(res.numOfCartItems);
+  this.cartService.cartNumber.set(res.numOfCartItems);
   
 }
 })
+    // BehaviourSubject
+    // this.cartService.cartNumber.subscribe({
+    //   next:(data)=>{
+    //     this.countNumber = data;
+    //   }
+    // })
 
-    this.cartService.cartNumber.subscribe({
-      next:(data)=>{
-        this.countNumber = data;
-      }
-    })
 }
 
 

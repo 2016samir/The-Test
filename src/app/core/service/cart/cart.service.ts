@@ -10,7 +10,8 @@ export class CartService {
 
   constructor(private httpClient:HttpClient) { }
   
-  cartNumber : BehaviorSubject<number> = new BehaviorSubject(0);
+  // cartNumber : BehaviorSubject<number> = new BehaviorSubject(0);
+  cartNumber : WritableSignal<number> = signal(0);
 
   addProductToCart(id:string):Observable<any>{
     return this.httpClient.post(`${environment.baseUrl}cart` ,
